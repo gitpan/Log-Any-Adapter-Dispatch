@@ -2,19 +2,22 @@ NAME
     Log::Any::Adapter::Dispatch
 
 SYNOPSIS
-        use Log::Dispatch;
-        my $dispatcher = Log::Dispatch->new();
-        $dispatcher->add(Log::Dispatch::File->new(...));
-        $dispatcher->add(Log::Dispatch::Screen->new(...));
-        Log::Any->set_adapter('Dispatch', dispatcher => $dispatcher);
+        use Log::Any::Adapter;
+
+        Log::Any::Adapter->set('Dispatch', outputs => [[ ... ]]);
+
+        my $dispatcher = Log::Dispatch->new( ... );
+        Log::Any::Adapter->set('Dispatch', dispatcher => $dispatcher);
 
 DESCRIPTION
-    This Log::Any adapter uses Log::Dispatch for logging. There is a single
-    required parameter, *dispatcher*, which must be a valid Log::Dispatch
-    object.
+    This Log::Any adapter uses Log::Dispatch for logging.
+
+    You may either pass parameters (like *outputs*) to be passed to
+    `Log::Dispatch->new', or pass a `Log::Dispatch' object directly in the
+    *dispatcher* parameter.
 
 SEE ALSO
-    Log::Any, Log::Dispatch
+    Log::Any::Adapter, Log::Any, Log::Dispatch
 
 AUTHOR
     Jonathan Swartz
